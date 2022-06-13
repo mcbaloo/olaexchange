@@ -8,7 +8,7 @@ exports.createAsync = async (req, res) => {
         error,
         data,
         statusCode
-    } = await userService.createAsync(req.body);
+    } = await userService.CreateAsync(req.body);
 
     if (error) return response.error(res, error, statusCode);
 

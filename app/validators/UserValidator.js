@@ -1,7 +1,7 @@
 "use strict";
 
 const Joi = require("joi");
-const validate = require("../helpers");
+const {validate} = require("../helpers");
 
 exports.validateSchema = (payload) => {
     const schema = {

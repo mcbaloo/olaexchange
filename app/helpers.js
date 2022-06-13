@@ -1,9 +1,9 @@
 "use strict";
 const Joi = require("joi");
 
-exports.validate = async (schema, payload) => {
+exports.validate = (schema, payload) => {
     schema = Joi.object(schema);
-    const {error} = schema.validateAsync(payload, {
+    const {error} = schema.validate(payload, {
         allowUnknown: true,
     });
 
