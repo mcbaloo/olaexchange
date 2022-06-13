@@ -2,6 +2,7 @@
 
 const userRepository = require("../repositories/UserRepository");
 const userValidator = require("../validators/UserValidator");
+const Constants = require("../utils/Constants");
 
 
 exports.CreateAsync = async (payload) => {
@@ -11,6 +12,12 @@ exports.CreateAsync = async (payload) => {
         error: validator,
         statusCode: 422
     };
+    const user = await userRepository.findOne({$or:[{username: payload.username, email: payload.email}]});
+
+    if (user) {
+        console.log("username or email exist.");
+        return {data: Constants.Messages.DUPLICATE};
+    }
     await userRepository.Create(payload);
     return {
         data: true,
