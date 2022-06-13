@@ -30,4 +30,15 @@ module.exports = mongoose.model("User", new Schema({
         default:{},
         require: true
     }
-}));
+},{
+    toJSON: {
+        transform: function (doc, ret) {
+            delete ret.createdAt;
+            delete ret.updatedAt;
+            delete ret.__v;
+            delete ret._id;
+        }
+    },
+    timestamps: true
+}
+));
