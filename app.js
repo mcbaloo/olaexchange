@@ -26,4 +26,4 @@ app.use((err, req, res) => {
     res.send({error: err.message});
 });
 
-app.listen(process.env.PORT,()=> console.log("started"));
+app.listen(process.env.PORT || 3000,()=> console.log("started"));
