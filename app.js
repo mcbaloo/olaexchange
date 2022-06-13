@@ -1,6 +1,7 @@
 "use strict"
 
 require("./lib/database");
+require("dotenv").config();
 
 const express = require("express");
 const app = express();
