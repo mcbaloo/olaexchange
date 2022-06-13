@@ -15,6 +15,7 @@ module.exports = mongoose.model("User", new Schema({
     },
     username:{
         type: String,
+        index: true,
         require: true
     },
     phoneNumber:{
@@ -23,6 +24,7 @@ module.exports = mongoose.model("User", new Schema({
     },
     email:{
         type: String,
+        index: true,
         require: true
     },
     loginProfile:{
