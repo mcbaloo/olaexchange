@@ -10,8 +10,8 @@ exports.validateSchema = (payload) => {
         username: Joi.string().min(3).max(30).required(),
         phoneNumber: Joi.string().required(),
         email: Joi.string().email({minDomainSegments: 2, tlds: {allow: ['com', 'net']}}).required(),
-        loginProfile: Joi.object().keys({
-            password: Joi.string()
+        loginProfile: Joi.object().required().keys({
+            password: Joi.string().required()
                 .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
         })
     };
