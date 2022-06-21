@@ -12,9 +12,8 @@ exports.CreateAsync = async (payload) => {
         error: validator,
         statusCode: 422
     };
-
     payload.salt = utils.generateSalt(10);
-    
+
     payload.password = utils.encrypt(payload.password+payload.salt);
 
     const user = await userRepository.findOne({$or:[{email: payload.email},{username: payload.username}]});
@@ -28,4 +27,20 @@ exports.CreateAsync = async (payload) => {
         data: true,
         statusCode: 201
     };
-}
+};
+
+exports.getUsers = async () => {
+    const users = await userRepository.Model.find();
+    return {
+        data: users,
+        statusCode:201
+    };
+};
+
+exports.getUser = async (id) => {
+ const user = await userRepository.findById(id);
+ return{
+    data:user,
+    statusCode: 201
+ };
+};
