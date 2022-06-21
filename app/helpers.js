@@ -8,7 +8,7 @@ exports.validate = (schema, payload) => {
     });
 
     if (error)
-        return error.details[0].message.replace(/['"]/g, "");
+        return error.details[0].message.replace(/['"]/g, "")
 
     return null;
 };
