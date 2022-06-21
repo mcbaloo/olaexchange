@@ -14,7 +14,7 @@ exports.encrypt = (data) => {
      return encryptedData;
 };
 
-exports.decrypt =(ciphertext){
+exports.decrypt = (ciphertext) => {
     if (!ciphertext){
         return;
     }
