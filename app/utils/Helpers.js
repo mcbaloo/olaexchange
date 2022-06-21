@@ -1,6 +1,7 @@
 "use strict";
-require('dotenv').dotenv.config();
+require("dotenv").config();
 const cryptoJS = require('crypto-js');
+const bcrypt = require('bcrypt');
 
 exports.encrypt = (data) => {
     if(!data){
@@ -21,3 +22,5 @@ exports.decrypt = (ciphertext) => {
     const bytes = cryptoJS.decrypt(ciphertext,process.env.ENCRYPTION_KEY) 
     return bytes.toString(cryptoJS.enc.Utf8);
 }
+
+exports.generateSalt = (saltRounds = 10) =>  bcrypt.genSaltSync(saltRounds); 
