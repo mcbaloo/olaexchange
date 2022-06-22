@@ -19,7 +19,7 @@ exports.decrypt = (ciphertext) => {
     if (!ciphertext){
         return;
     }
-    const bytes = cryptoJS.decrypt(ciphertext,process.env.ENCRYPTION_KEY) 
+    const bytes = cryptoJS.AES.decrypt(ciphertext,process.env.ENCRYPTION_KEY) 
     return bytes.toString(cryptoJS.enc.Utf8);
 }
 
