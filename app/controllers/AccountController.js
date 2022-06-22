@@ -1,7 +1,7 @@
 "use strict";
 
 const accountService = require("../services/AccountService");
-const response = require("../services/AccountService");
+const response = require("../utils/responses");
 
 exports.login = async (req, res) => {
  const {
