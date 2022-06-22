@@ -21,7 +21,7 @@ exports.CreateAsync = async (payload) => {
 
     if (user) {
         console.log("username or email exist.");
-        return {data: Constants.Messages.DUPLICATE};
+        return {error: Constants.Messages.DUPLICATE};
     }
     await userRepository.create(payload);
     return {
