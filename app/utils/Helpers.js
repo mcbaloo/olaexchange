@@ -23,4 +23,10 @@ exports.decrypt = (ciphertext) => {
     return bytes.toString(cryptoJS.enc.Utf8);
 }
 
+exports.hash = (plainText, salt = "") => {
+ if(!plainText) return;
+ const hashedText = salt ? bcrypt.hash(plainText,salt): bcrypt.hash(plainText);
+ return hashedText;
+};
+
 exports.generateSalt = (saltRounds = 10) =>  bcrypt.genSaltSync(saltRounds); 
