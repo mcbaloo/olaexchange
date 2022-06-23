@@ -1,9 +1,11 @@
 "use strict";
+require("dotenv").config();
 
 const userRepository = require("../repositories/UserRepository");
 const accountValidator = require("../validators/AccountValidator");
 const response = require("../utils/Constants");
 const utils = require("../utils/Helpers");
+const jwt = require("jsonwebtoken");
 
 exports.login = async (payload) => {
     const validator = accountValidator.validate(payload);
@@ -21,6 +23,7 @@ exports.login = async (payload) => {
             statusCode: 401
         }
     }
+
     const password = utils.hash(payload.password,user.loginProfile.salt);
          
     if(password !== user.loginProfile.password) {
@@ -29,8 +32,14 @@ exports.login = async (payload) => {
             statusCode: 401
         } 
     }
+    const token = jwt.sign({
+        userId: user._id,
+        email: user.email,
+        phoneNumber: user.phoneNumber
+    },process.env.ENCRYPTION_KEY,{expiresIn: "5m"});
+
     return {
-        data: true,
+        data: token,
         statusCode: 201
     }
 };
