@@ -21,8 +21,8 @@ exports.login = async (payload) => {
             statusCode: 401
         }
     }
-    const password = utils.encrypt(user.loginProfile.password);
-     
+    const password = utils.hash(payload.password,user.loginProfile.salt);
+         
     if(password !== user.loginProfile.password) {
         return{
             error: response.Messages.LOGINFAILED,
