@@ -25,7 +25,7 @@ exports.decrypt = (ciphertext) => {
 
 exports.hash = (plainText, salt = "") => {
  if(!plainText) return;
- const hashedText = salt ? bcrypt.hash(plainText,salt): bcrypt.hash(plainText);
+ const hashedText = bcrypt.hashSync(plainText,salt);
  return hashedText;
 };
 

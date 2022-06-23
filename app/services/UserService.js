@@ -12,11 +12,8 @@ exports.CreateAsync = async (payload) => {
         error: validator,
         statusCode: 422
     };
-    
-    const salt = utils.generateSalt(10);
-    payload.loginProfile.salt = salt;
-    payload.loginProfile.password = utils.hash(payload.loginProfile.password,salt);
-
+    payload.loginProfile.salt = utils.generateSalt(10);
+    payload.loginProfile.password = utils.hash(payload.loginProfile.password,payload.loginProfile.salt);
     const user = await userRepository.findOne({$or:[{email: payload.email},{username: payload.username}]});
 
     if (user) {
