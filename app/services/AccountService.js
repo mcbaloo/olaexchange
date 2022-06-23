@@ -32,10 +32,10 @@ exports.login = async (payload) => {
             statusCode: 401
         } 
     }
+    const {loginProfile, ...others} = user._doc;
+
     const token = jwt.sign({
-        userId: user._id,
-        email: user.email,
-        phoneNumber: user.phoneNumber
+        user: others,
     },process.env.ENCRYPTION_KEY,{expiresIn: "5m"});
 
     return {
