@@ -13,9 +13,9 @@ exports.CreateAsync = async (payload) => {
         statusCode: 422
     };
     
-    payload.loginProfile.salt = utils.generateSalt(10);
-
-    payload.loginProfile.password = utils.encrypt(payload.loginProfile.password+payload.salt);
+    const salt = utils.generateSalt(10);
+    payload.loginProfile.salt = salt;
+    payload.loginProfile.password = utils.hash(payload.loginProfile.password,salt);
 
     const user = await userRepository.findOne({$or:[{email: payload.email},{username: payload.username}]});
 
