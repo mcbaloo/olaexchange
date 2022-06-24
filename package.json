@@ -1,6 +1,9 @@
 {
   "name": "olaexchange",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
+  }
   "description": "Application for listing and buying of crypto and other crypto related entities",
   "main": "app.js",
   "directories": {
