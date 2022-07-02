@@ -55,7 +55,7 @@ exports.changePassword = async (payload) => {
     const user = await userRepository.findOne({email:payload.email});
     if(!user){
         return{
-            error: response.Messages.LOGINFAILED,
+            error: response.Messages.PASSWORDCHANGEFAILED,
             statusCode: 404
         }
     }
@@ -64,7 +64,7 @@ exports.changePassword = async (payload) => {
          
     if(password !== user.loginProfile.password) {
         return{
-            error: response.Messages.LOGINFAILED,
+            error: response.Messages.PASSWORDCHANGEFAILED,
             statusCode: 404
         } 
     }
@@ -72,7 +72,7 @@ exports.changePassword = async (payload) => {
     user.loginProfile.password = utils.hash(payload.password,user.LOGINFAILED.salt);
 
     await userRepository.upsert({_id:user._id}, user);
-    
+
     return {
         data: true,
         statusCode: 201
