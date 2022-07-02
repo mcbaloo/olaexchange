@@ -14,3 +14,15 @@ exports.login = async (req, res) => {
  return response.success(res, data, statusCode);
 
 };
+
+exports.changePassword = async (req, res) => {
+   const {
+      error,
+      data,
+      statusCode
+   } = await accountService.changePassword(req,body);
+   
+   if(error) return response.error(res, error, statusCode);
+
+ return response.success(res, data, statusCode);
+};
