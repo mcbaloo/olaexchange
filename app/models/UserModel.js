@@ -31,6 +31,17 @@ module.exports = mongoose.model("User", new Schema({
         type: Object,
         default:{},
         require: true
+    },
+    role :{
+        type : Array,
+        default: "",
+        index : true,
+        require : true
+    },
+    isActive:{
+        type : Boolean,
+        index : true,
+        require : true
     }
 },{
     toJSON: {
