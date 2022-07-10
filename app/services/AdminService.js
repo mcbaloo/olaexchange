@@ -6,11 +6,11 @@ const Constants = require("../utils/Constants");
 const utils = require("../utils/Helpers");
 exports.CreateAsync = async (payload) => {
     if(!payload.role) return{
-       error: "role is required",
+       error: Constants.Messages.MISSINGROLE,
        statusCode : 400
     };
     if(payload.role.toLowerCase() != "manager") return{
-        error: "Invalid role type.Kindly use Mangaer",
+        error: Constants.Messages.INVALIDADMINROLE,
         statusCode : 400
     }
     const response =  await userService.CreateAsync(payload);

@@ -34,7 +34,7 @@ module.exports = mongoose.model("User", new Schema({
     },
     role :{
         type : Array,
-        default: "",
+        default: [],
         index : true,
         require : true
     },
