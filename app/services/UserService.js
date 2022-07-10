@@ -7,14 +7,7 @@ const Constants = require("../utils/Constants");
 const utils = require("../utils/Helpers");
 
 
-exports.CreateAsync = async (payload, type) => {
-    if(type){
-        const validator =adminValidator.validateSchema(payload);
-        if (validator) return {
-            error: validator,
-            statusCode: 422
-        };
-    }
+exports.CreateAsync = async (payload) => {
    const validator = userValidator.validateSchema(payload);
         if (validator) return {
             error: validator,

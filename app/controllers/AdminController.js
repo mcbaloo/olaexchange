@@ -1,6 +1,6 @@
 "use strict";
 
-const userService = require("../services/UserService");
+const adminService = require("../services/AdminService");
 const response = require("../utils/responses");
 
 exports.createAsync = async (req, res) => {
@@ -8,7 +8,7 @@ exports.createAsync = async (req, res) => {
         error,
         data,
         statusCode
-    } = await userService.CreateAsync(req.body, "Admin");
+    } = await adminService.CreateAsync(req.body);
 
     if (error) return response.error(res, error, statusCode);
 
