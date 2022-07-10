@@ -7,6 +7,7 @@ module.exports = {
         LOGINFAILED:"The email or passoword you entered does not match.",
         PASSWORDCHANGEFAILED:"The password change operation not successful.",
         INVALIDADMINROLE : "Invalid role type.Kindly use Mangaer",
-        MISSINGROLE : "role is required"
+        MISSINGROLE : "role is required",
+        MANAGERROLE: "manager"
     }
 };

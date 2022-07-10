@@ -9,7 +9,7 @@ exports.CreateAsync = async (payload) => {
        error: Constants.Messages.MISSINGROLE,
        statusCode : 400
     };
-    if(payload.role.toLowerCase() != "manager") return{
+    if(payload.role.toLowerCase() != Constants.Messages.MANAGERROLE) return{
         error: Constants.Messages.INVALIDADMINROLE,
         statusCode : 400
     }
