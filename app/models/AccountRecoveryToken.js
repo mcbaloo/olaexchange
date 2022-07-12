@@ -4,7 +4,7 @@ const { default: mongoose } = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-module.exports = mongoose.model("User", new Schema({
+module.exports = mongoose.model("Tokens", new Schema({
     token:{
         type: String,
         require: true,
