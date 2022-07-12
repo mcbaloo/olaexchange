@@ -2,6 +2,7 @@
 require("dotenv").config();
 
 const userRepository = require("../repositories/UserRepository");
+const tokenRepository = require("../repositories/AccountRecoveryTokenRepository");
 const accountValidator = require("../validators/AccountValidator");
 const notificationService = require("../services/NotificationService");
 const response = require("../utils/Constants");
@@ -85,11 +86,12 @@ exports.sendAccountRecoveryEmail = async (payload) => {
     if(!user){
         return{
             error: response.Messages.ACCOUNTRECOVERY,
-            statusCode: 404
+            statusCode: 201
         }
     }
-    const OTP = utils.generateOTP(7);
-    const emailContent = process.env.EMAILTEMPLATE.replace("####", OTP);
+    const model = {token: utils.generateOTP(7), email:payload.email};
+    await tokenRepository.create(model);
+    const emailContent = process.env.EMAILTEMPLATE.replace("####", model.token);
     await notificationService.sendAsync(emailContent);
 
     return{
