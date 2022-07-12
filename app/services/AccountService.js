@@ -100,7 +100,7 @@ exports.sendAccountRecoveryEmail = async (payload) => {
     }
 };
 
-exports.forgotPassword = async (payload) => {
+exports.recoverPassword = async (payload) => {
     const validator = accountValidator.validatePasswordRecoveryModel(payload);
     if(validator){
         return{
