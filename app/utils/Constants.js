@@ -6,8 +6,8 @@ module.exports = {
         NOTFOUND: "The resources you are looking for does not exist.",
         LOGINFAILED:"The email or passoword you entered does not match.",
         PASSWORDCHANGEFAILED:"The password change operation not successful.",
-        INVALIDADMINROLE : "Invalid role type.Kindly use Mangaer",
-        MISSINGROLE : "role is required",
-        MANAGERROLE: "manager"
+        INVALIDADMINROLE : "Invalid role selected.",
+        MISSINGROLE : "Role is required",
+        ACCOUNTRECOVERY:"An email was sent to the account attached to the email supplied."
     }
 };
