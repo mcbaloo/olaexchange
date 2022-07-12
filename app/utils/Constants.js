@@ -8,7 +8,6 @@ module.exports = {
         PASSWORDCHANGEFAILED:"The password change operation not successful.",
         INVALIDADMINROLE : "Invalid role selected.",
         MISSINGROLE : "Role is required",
-        MANAGERROLE: "manager",
         ACCOUNTRECOVERY:"An email was sent to the account attached to the email supplied."
     }
 };
