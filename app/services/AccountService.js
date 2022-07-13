@@ -119,7 +119,7 @@ exports.recoverPassword = async (payload) => {
     }
     const expiryDate = new Date();
 
-    if(token._doc.createdAt < expiryDate.setMinutes(-5)) {
+    if(token._doc.createdAt < expiryDate.setMinutes(-15)) {
         return {
             error:response.Messages.OTPEXPIRED,
             statusCode:404
