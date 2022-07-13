@@ -26,3 +26,27 @@ exports.changePassword = async (req, res) => {
 
  return response.success(res, data, statusCode);
 };
+
+exports.sendPasswordRecoveryEmail = async (req, res) => {
+   const {
+      error,
+      data,
+      statusCode
+   } = await accountService.sendPasswordRecoveryEmail(req,body);
+   
+   if(error) return response.error(res, error, statusCode);
+
+ return response.success(res, data, statusCode);
+};
+
+exports.recoverPassword = async (req, res) => {
+   const {
+      error,
+      data,
+      statusCode
+   } = await accountService.recoverPassword(req,body);
+   
+   if(error) return response.error(res, error, statusCode);
+
+ return response.success(res, data, statusCode);
+};
