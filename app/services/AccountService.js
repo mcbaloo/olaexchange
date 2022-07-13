@@ -99,3 +99,52 @@ exports.sendAccountRecoveryEmail = async (payload) => {
         statusCode:201
     }
 };
+
+exports.recoverPassword = async (payload) => {
+    const validator = accountValidator.validatePasswordRecoveryModel(payload);
+    if(validator){
+        return{
+            error: validator,
+            statusCode: 422
+        }
+    }
+
+    const token =  await tokenRepository.findOne({$and:[{token:payload.token},{email:payload.email}]});
+
+    if(!token) {
+        return {
+            error:response.Messages.ACCOUNTRECOVERYERROR,
+            statusCode:404
+        }
+    }
+    const expiryDate = new Date();
+
+    if(token._doc.createdAt < expiryDate.setMinutes(-15)) {
+        return {
+            error:response.Messages.OTPEXPIRED,
+            statusCode:404
+        }
+    }
+    
+    const user = await userRepository.findOne({email:token.email});
+
+    if(!user){
+        return {
+            error:response.Messages.ACCOUNTRECOVERYERROR,
+            statusCode:404
+        }
+    }
+
+    user.loginProfile.password = utils.hash(payload.password,user.loginProfile.salt);
+
+    await userRepository.upsert({_id:user._id},user);
+
+    //set the created time to the last 10 hours to render the token reusable
+    token._doc.createdAt.SetHours(-10)
+    await tokenRepository.upsert({_id:token._id}, token);
+
+    return{
+        data: true,
+        statusCode:201
+    }
+};

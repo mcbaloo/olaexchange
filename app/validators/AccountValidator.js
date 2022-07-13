@@ -22,3 +22,14 @@ exports.validateChangePasswordModel = (payload) => {
     };
     return validate(schema,payload);
 };
+
+exports.validatePasswordRecoveryModel = (payload) => {
+    const schema = {
+        email: Joi.string().
+        email({minDomainSegments: 2, tlds: {allow: ['com', 'net']}}).required(),
+        password: Joi.string().required(),
+        token: Joi.string().required(),
+
+    };
+    return validate(schema,payload);
+};
