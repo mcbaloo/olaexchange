@@ -2,7 +2,9 @@
 require("dotenv").config();
 
 const userRepository = require("../repositories/UserRepository");
+const tokenRepository = require("../repositories/AccountRecoveryTokenRepository");
 const accountValidator = require("../validators/AccountValidator");
+const notificationService = require("../services/NotificationService");
 const response = require("../utils/Constants");
 const utils = require("../utils/Helpers");
 const jwt = require("jsonwebtoken");
@@ -76,5 +78,24 @@ exports.changePassword = async (payload) => {
     return {
         data: true,
         statusCode: 201
+    }
+};
+
+exports.sendAccountRecoveryEmail = async (payload) => {
+    const user = await userRepository.findOne({email:payload.email});
+    if(!user){
+        return{
+            error: response.Messages.ACCOUNTRECOVERY,
+            statusCode: 201
+        }
+    }
+    const model = {token: utils.generateOTP(7), email:payload.email};
+    await tokenRepository.create(model);
+    const emailContent = process.env.EMAILTEMPLATE.replace("####", model.token);
+    await notificationService.sendAsync(emailContent);
+
+    return{
+        data:response.Messages.ACCOUNTRECOVERY,
+        statusCode:201
     }
 };

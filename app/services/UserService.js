@@ -2,16 +2,19 @@
 
 const userRepository = require("../repositories/UserRepository");
 const userValidator = require("../validators/UserValidator");
+const adminValidator = require("../validators/AdminValidator")
 const Constants = require("../utils/Constants");
 const utils = require("../utils/Helpers");
 
 
 exports.CreateAsync = async (payload) => {
-    const validator = userValidator.validateSchema(payload);
-    if (validator) return {
-        error: validator,
-        statusCode: 422
-    };
+   const validator = userValidator.validateSchema(payload);
+        if (validator) return {
+            error: validator,
+            statusCode: 422
+        };
+    
+    payload.isActive = 1
     payload.loginProfile.salt = utils.generateSalt(10);
     payload.loginProfile.password = utils.hash(payload.loginProfile.password,payload.loginProfile.salt);
     const user = await userRepository.findOne({$or:[{email: payload.email},{username: payload.username}]});
