@@ -11,5 +11,9 @@ module.exports = {
         ACCOUNTRECOVERY:"An email was sent to the account attached to the email supplied.",
         ACCOUNTRECOVERYERROR:"An error occured while validating your OTP. Please try again later.",
         OTPEXPIRED:"The One TIme Password you enter has expired. Try again later."
+   
+    },
+    Config :{
+        DEFAULTCURRENCY : "USD"
     }
 };
