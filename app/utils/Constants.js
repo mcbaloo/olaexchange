@@ -10,6 +10,16 @@ module.exports = {
         MISSINGROLE : "Role is required",
         ACCOUNTRECOVERY:"An email was sent to the account attached to the email supplied.",
         ACCOUNTRECOVERYERROR:"An error occured while validating your OTP. Please try again later.",
-        OTPEXPIRED:"The One TIme Password you enter has expired. Try again later."
+        OTPEXPIRED:"The One TIme Password you enter has expired. Try again later.",
+       RECORDNOTFOUND : "record not found"
+    },
+    Config :{
+        DEFAULTCURRENCY : "USD"
+    },
+    TransactionStatus : {
+        SUBMITTED : "Submitted",
+        PAID : "Paid",
+        PROCESSED : "Processed"
     }
 };
+

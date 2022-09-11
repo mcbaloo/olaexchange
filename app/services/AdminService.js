@@ -17,3 +17,10 @@ exports.CreateAsync = async (payload) => {
     const response =  await userService.CreateAsync(payload);
     return response;
 };
+exports.getActiveUser = async () => {
+    // const users = await userRepository.Model.find();
+    // return {
+    //     data: users,
+    //     statusCode:201
+    // };
+};
