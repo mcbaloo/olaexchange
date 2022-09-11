@@ -31,4 +31,24 @@ const verifyTokenAndAuthorization = (req,res,next) => {
        });
 };
 
-module.exports = {verifyTokenAndAuthorization,verifyToken};
+const verifySuperAdminAuthorization = (req,res,next) => {
+    verifyToken(req,res, ()=> {
+        if (req.user.role === process.env.SUPERADMIN) {
+            next();
+        }else {
+            return res.status(403).json('You are not allow to perform the operation');
+        }
+       });
+};
+
+const verifyAdminAuthorization = (req,res,next) => {
+    verifyToken(req,res, ()=> {
+        if (req.user.role === (process.env.SUPERADMIN || process.env.MANAGER)) {
+            next();
+        }else {
+            return res.status(403).json('You are not allow to perform the operation');
+        }
+       });
+};
+
+module.exports = {verifyTokenAndAuthorization,verifyToken,verifySuperAdminAuthorization,verifyAdminAuthorization};
