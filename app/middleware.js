@@ -33,7 +33,7 @@ const verifyTokenAndAuthorization = (req,res,next) => {
 
 const verifySuperAdminAuthorization = (req,res,next) => {
     verifyToken(req,res, ()=> {
-        if (req.user.role === process.env.SUPERADMIN) {
+        if (req.user.role.includes(process.env.SUPERADMIN)) {
             next();
         }else {
             return res.status(403).json('You are not allow to perform the operation');
@@ -43,7 +43,7 @@ const verifySuperAdminAuthorization = (req,res,next) => {
 
 const verifyAdminAuthorization = (req,res,next) => {
     verifyToken(req,res, ()=> {
-        if (req.user.role === (process.env.SUPERADMIN || process.env.MANAGER)) {
+        if (req.user.role.includes(process.env.SUPERADMIN) || req.user.role.includes(process.env.MANAGER)) {
             next();
         }else {
             return res.status(403).json('You are not allow to perform the operation');
