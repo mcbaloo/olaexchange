@@ -12,7 +12,7 @@ const verifyToken = (req,res,next) => {
        process.env.ENCRYPTION_KEY,
        (err, user) => {
            if (err) return res.status(403).json('Token is not valid!'+ err);
-           req.user = user;
+           req.user = user.user;
            next();
        }
    );
