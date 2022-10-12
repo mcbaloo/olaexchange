@@ -38,7 +38,7 @@ exports.login = async (payload) => {
 
     const token = jwt.sign({
         user: others,
-    },process.env.ENCRYPTION_KEY,{expiresIn: "5m"});
+    },process.env.ENCRYPTION_KEY,{expiresIn: "60m"});
 
     return {
         data: token,
